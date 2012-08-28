@@ -16,7 +16,7 @@ import org.junit.Test;
 import com.google.common.io.Files;
 
 public class HornetqChannelTest {
-    private File dataDir;
+    private static final String HORNETQ_DIR_HOME = "target/hornetq";
 
     @Test
     public void test() {
@@ -24,7 +24,7 @@ public class HornetqChannelTest {
         channel.setQueueName("junit");
         channel.setMaxChannelSize(1000);
         channel.setMaxPutWaitTime(1000);
-        channel.setDataDir(dataDir.getAbsolutePath());
+        channel.setDataDir(HORNETQ_DIR_HOME);
         channel.configure(null);
         channel.start();
 
@@ -58,14 +58,13 @@ public class HornetqChannelTest {
 
     @Before
     public void setup() throws Exception {
-        dataDir = Files.createTempDir();
-        System.out.println("dataDir = " + dataDir);
+        cleanup();
     }
 
-    @After
+//    @After
     public void cleanup() throws Exception {
         try {
-            Files.deleteRecursively(dataDir);
+            Files.deleteRecursively(new File(HORNETQ_DIR_HOME));
         }
         catch (Throwable e) {
             // ignore

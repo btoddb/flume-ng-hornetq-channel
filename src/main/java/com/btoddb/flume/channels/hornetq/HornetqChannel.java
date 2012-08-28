@@ -123,7 +123,6 @@ public class HornetqChannel extends BasicChannelSemantics implements HornetqChan
             logger.error("exception while configuring hornetq", e);
             throw new ChannelException("exception while configuring hornetq", e);
         }
-
     }
 
     private void createHornetqServer() {
@@ -134,8 +133,8 @@ public class HornetqChannel extends BasicChannelSemantics implements HornetqChan
 
             Configuration config = new ConfigurationImpl();
             config.setBindingsDirectory(dataDir+"/bindings");
-            config.setJournalType(JournalType.NIO); // TODO:BTB use AIO on linux
             config.setJournalDirectory(dataDir+"/journal");
+            config.setJournalType(JournalType.NIO); // TODO:BTB use AIO on linux
             config.setLargeMessagesDirectory(dataDir+"/large");
             config.setSecurityEnabled(false);
 
