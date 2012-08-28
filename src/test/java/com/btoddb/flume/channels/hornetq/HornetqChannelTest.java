@@ -61,7 +61,7 @@ public class HornetqChannelTest {
         cleanup();
     }
 
-//    @After
+    @After
     public void cleanup() throws Exception {
         try {
             Files.deleteRecursively(new File(HORNETQ_DIR_HOME));
